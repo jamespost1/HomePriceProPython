@@ -8,7 +8,7 @@ public class CSVReader2 {
 		String currentLine;
 		int c = 0;
 		
-		
+		//update the path for where dataset is stored.
 		String file = "/Users/lyssa./Downloads/S24/softwareEngineering/realtor-data.zip2.csv";
 
 		BufferedReader reader = null;
