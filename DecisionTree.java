@@ -5,7 +5,7 @@ import java.util.List;
 public class DecisionTree {
     private DecisionNode root;
 
-    public void fit(double[][] X, int[] y, int maxDepth) {
+    public void train(double[][] X, int[] y, int maxDepth) {
         this.root = buildTree(X, y, maxDepth);
     }
 

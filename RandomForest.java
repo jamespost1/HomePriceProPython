@@ -15,9 +15,9 @@ public class RandomForest {
         this.random = new Random();
     }
 
-    public void fit(double[][] X, int[] y) {
+    public void train(double[][] X, int[] y) {
         for(int i = 0; i < numTrees; i++){
-            // create n Decision Trees
+            // create numTrees Decision Trees
             DecisionTree tree = new DecisionTree();
             // generate random indices for bootstrapping
             int[] bootstrapIndices = generateBootstrapSampleIndices(X.length);
@@ -28,7 +28,7 @@ public class RandomForest {
                 bootstrapX[j] = X[index];
                 bootstrapY[j] = y[index];
             }
-            tree.fit(bootstrapX, bootstrapY, maxDepth);
+            tree.train(bootstrapX, bootstrapY, maxDepth);
             trees.add(tree);
 
         }
