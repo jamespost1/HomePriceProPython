@@ -26,7 +26,7 @@ public class DecisionTree {
     }
 
     private DecisionNode buildTree(double[][] X, int[] y, int maxDepth) {
-        if(X.length == 0 || maxDepth == 0){
+        if (X.length == 0 || maxDepth == 0) {
             return new DecisionNode(majorityClass(y));
         }
 
@@ -37,25 +37,25 @@ public class DecisionTree {
         int featureIndex = -1;
         double bestGain = Double.MIN_VALUE;
 
-        for(int i=0; i<numFeatures; i++) {
+        for (int i = 0; i < numFeatures; i++) {
             double[] values = new double[numInstances];
-            for(int j=0; j<numInstances; j++) {
+            for (int j = 0; j < numInstances; j++) {
                 values[j] = X[j][i];
             }
             double[] splitInfo = findBestSplit(values, y);
             double infoGain = splitInfo[0];
-            if(infoGain > bestGain) {
+            if (infoGain > bestGain) {
                 bestGain = infoGain;
                 featureIndex = i;
                 featureSplit = splitInfo;
             }
         }
-        if(bestGain == 0) {
+        if (bestGain == 0) {
             return new DecisionNode(majorityClass(y));
         }
 
         double splitValue = featureSplit[1];
-        int[] leftIndices = new int[(int) featureSplit[2]];
+        int[] leftIndices = new int[(int)featureSplit[2]];
         int[] rightIndices = new int[numInstances - leftIndices.length];
         int leftSize = 0;
         int rightSize = 0;
