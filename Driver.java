@@ -13,7 +13,7 @@ public class Driver {
         int[] y = {0, 0, 1, 1, 0, 0}; // Sample target labels (0 and 1 for binary classification)
 
         // Create and train a Random Forest Classifier
-        RandomForest forest = new RandomForest(100, 30); // 10 trees, maximum depth 3
+        RandomForest forest = new RandomForest(100, 3); // 100 trees, maximum depth 3
         forest.train(X, y);
 
         // Make predictions on new instances
