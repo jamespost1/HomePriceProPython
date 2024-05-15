@@ -51,7 +51,7 @@ public class UI extends JFrame {
         panel.add(acreField);
 
         submitButton = new JButton("Submit");
-
+        
         submitButton.addActionListener((ActionEvent e) -> {
             try {
                 double budget = Double.parseDouble(budgetField.getText());
@@ -59,17 +59,24 @@ public class UI extends JFrame {
                 double baths = Double.parseDouble(bathField.getText());
                 int zip = Integer.parseInt(zipField.getText());
                 double acre = Double.parseDouble(acreField.getText());
-
+                double[] sample = {budget, beds, baths, acre, zip};
+                RandomForest forest = new RandomForest(100, 7);
+                int prediction = forest.predict(sample);
+                //Suggestion sug = new Suggestion("/realtor-data.zip.csv/", zip, sample);
+                if(prediction == 1){
+                    JOptionPane.showMessageDialog(null,
+                        "Profitable");
+                } else {
                 JOptionPane.showMessageDialog(null,
-                        "Budget: $" + budget + "\nBeds: " + beds + "\nBaths: " + baths +
-                                "\nZip: " + zip + "\nAcres: " + acre);
-            }catch (NumberFormatException enter){
+                        "Not Profitable");
+                }
+            }
+            catch (NumberFormatException enter){
                 JOptionPane.showMessageDialog(null, "Please enter correct values.");
             }
         });
 
         add(panel, BorderLayout.NORTH);
         add(submitButton, BorderLayout.SOUTH);
-
     }
 }
