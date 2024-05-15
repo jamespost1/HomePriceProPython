@@ -9,13 +9,34 @@ public class Suggestion {
             int prediction = forest.predict(sample);
             File file = new File(path);
             Scanner sc = new Scanner(file).useDelimiter(",");
-            while(sc.next() != Integer.toString(zip)){
-                sc.next();
+            double[][] values = null;
+            String cur = sc.next();
+            //find same zip first
+            while(cur != Integer.toString(zip)){
+                cur = sc.next();
             }
-            for(int i=0; i < 5; i++){
-                sc.next();
+            //go to next price
+            for(int i=0; i < 4; i++){
+                cur = sc.next();
             }
-            
+            int row = 0;
+            for(int i = 0; i < 100; i++){
+                if(values.length > 10){
+                    break;
+                }
+                if(Double.parseDouble(cur) > sample[0]){
+                    
+                }
+            }
+            if(Double.parseDouble(cur) > sample[0])
+            while(values.length < 11){
+                if (Double.parseDouble(sc.next()) < sample[0]){
+                    //go to next price
+                    for(int i=0; i < 10; i++){
+                        sc.next();
+                    }
+                }
+            }
             sc.close();
         } catch(Exception e){
             e.printStackTrace();
