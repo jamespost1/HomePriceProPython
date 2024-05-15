@@ -55,8 +55,8 @@ public class DecisionTree {
         }
 
         double splitValue = featureSplit[1];
-        int[] leftIndices = new int[(int)featureSplit[2]];
-        int[] rightIndices = new int[numInstances - leftIndices.length];
+        int[] leftIndices = new int[(int)featureSplit[2] + 1];
+        int[] rightIndices = new int[numInstances - leftIndices.length + 1];
         int leftSize = 0;
         int rightSize = 0;
 
@@ -95,17 +95,16 @@ public class DecisionTree {
         double bestSplitValue = 0;
         int bestSplitIndex = -1;
 
-        // Iterate through possible split points
+        //iterate through possible splits
         for (int i = 1; i < values.length; i++) {
             double splitValue = (values[i - 1] + values[i]) / 2.0;
             int[] leftLabels = Arrays.copyOfRange(y, 0, i);
             int[] rightLabels = Arrays.copyOfRange(y, i, values.length);
 
-            // Calculate entropy for the split
             double entropy = (double) i / values.length * calculateEntropy(leftLabels)
                     + (double) (values.length - i) / values.length * calculateEntropy(rightLabels);
 
-            // Update best split if necessary
+            // update
             if (entropy < bestEntropy) {
                 bestEntropy = entropy;
                 bestSplitValue = splitValue;
@@ -152,13 +151,11 @@ public class DecisionTree {
     }
 
     private int majorityClass(int[] y) {
-        // Find the majority class in the target variable
-        // Here's a simple implementation:
-        int[] counts = new int[2]; // Assuming binary classification
+        int[] counts = new int[2];
         for (int value : y) {
             counts[value]++;
         }
-        return counts[0] > counts[1] ? 0 : 1; // Returning the majority class
+        return counts[0] > counts[1] ? 0 : 1;
     }
 
 }
